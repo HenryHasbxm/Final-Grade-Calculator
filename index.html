@@ -10,7 +10,7 @@
 
     <div class="container">
         <h1>Final Grade Calculator</h1>
-        <p class="subtitle">Enter your details to calculate your required score.</p>
+        <p class="subtitle">Enter your grades to see your fate.</p>
 
         <div class="input-group">
             <label>Current Grade (%)</label>
@@ -27,23 +27,13 @@
             <input type="number" id="finalWeight" placeholder="e.g. 20">
         </div>
 
-        <div class="options">
-            <label class="checkbox-container">
-                <input type="checkbox" id="testCorrection">
-                Enable Test Corrections (Half-credit back)
-            </label>
-        </div>
-
-        <button class="calc-btn" onclick="showPopup()">Calculate Final Grade</button>
+        <button class="calc-btn" onclick="showPopup()">Calculate</button>
     </div>
 
-    <!-- The Satisfying Popup Modal -->
     <div id="resultModal" class="modal">
         <div class="modal-content">
-            <div id="modalBody">
-                <!-- Content injected by JS -->
-            </div>
-            <button class="close-btn" onclick="closeModal()">Got it!</button>
+            <div id="modalBody"></div>
+            <button class="close-btn" onclick="closeModal()">Close</button>
         </div>
     </div>
 
