@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Grade & Final Exam Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>📊 Grade Assistant</h1>
+        
+        <div class="section">
+            <h3>Step 1: Test Corrections</h3>
+            <p class="subtext">Enter your score to see your grade after half-credit corrections.</p>
+            <label>Original Test Score (%)</label>
+            <input type="number" id="originalScore" placeholder="e.g. 70">
+            <button onclick="applyCorrections()">Apply Corrections</button>
+            <div id="correctionResult" class="mini-result"></div>
+        </div>
 
+        <hr>
+
+        <div class="section">
+            <h3>Step 2: Final Exam Goal</h3>
+            <label>Current Overall Grade (%)</label>
+            <input type="number" id="currentGrade" placeholder="e.g. 85">
+            
+            <label>Target Grade (%)</label>
+            <input type="number" id="targetGrade" placeholder="e.g. 90">
+            
+            <label>Final Exam Weight (%)</label>
+            <input type="number" id="finalWeight" placeholder="e.g. 20">
+            
+            <button onclick="calculateFinalNeeded()" class="main-btn">Calculate Needed Score</button>
+        </div>
+
+        <div id="finalResult" class="final-display"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
