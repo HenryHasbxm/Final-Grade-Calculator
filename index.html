@@ -10,41 +10,40 @@
 
     <div class="container">
         <h1>Final Grade Calculator</h1>
-        <p class="subtitle">Find out what you need on your final exam.</p>
+        <p class="subtitle">Enter your details to calculate your required score.</p>
 
         <div class="input-group">
             <label>Current Grade (%)</label>
-            <input type="number" id="currentGrade" placeholder="e.g. 88" oninput="liveCalculate()">
+            <input type="number" id="currentGrade" placeholder="e.g. 88">
         </div>
 
         <div class="input-group">
             <label>Target Grade (%)</label>
-            <input type="number" id="targetGrade" placeholder="e.g. 90" oninput="liveCalculate()">
+            <input type="number" id="targetGrade" placeholder="e.g. 90">
         </div>
 
         <div class="input-group">
             <label>Final Exam Weight (%)</label>
-            <input type="number" id="finalWeight" placeholder="e.g. 20" oninput="liveCalculate()">
+            <input type="number" id="finalWeight" placeholder="e.g. 20">
         </div>
 
         <div class="options">
             <label class="checkbox-container">
-                <input type="checkbox" id="testCorrection" onchange="liveCalculate()">
+                <input type="checkbox" id="testCorrection">
                 Enable Test Corrections (Half-credit back)
             </label>
         </div>
 
-        <button class="calc-btn" onclick="showPopup()">Show Detailed Result</button>
-        
-        <div id="liveResult" class="live-text"></div>
+        <button class="calc-btn" onclick="showPopup()">Calculate Final Grade</button>
     </div>
 
-    <!-- The Popup Modal -->
+    <!-- The Satisfying Popup Modal -->
     <div id="resultModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="modalBody"></div>
-            <button class="close-btn" onclick="closeModal()">Close</button>
+            <div id="modalBody">
+                <!-- Content injected by JS -->
+            </div>
+            <button class="close-btn" onclick="closeModal()">Got it!</button>
         </div>
     </div>
 
