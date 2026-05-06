@@ -1,1 +1,1 @@
-# Final-Grade-Calculator
+# Final Grade Calculator
