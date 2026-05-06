@@ -1,55 +1,44 @@
-function getNeeded() {
+function showPopup() {
     let current = parseFloat(document.getElementById('currentGrade').value);
     const target = parseFloat(document.getElementById('targetGrade').value);
     const weight = parseFloat(document.getElementById('finalWeight').value) / 100;
     const correction = document.getElementById('testCorrection').checked;
 
-    if (isNaN(current) || isNaN(target) || isNaN(weight)) return null;
+    const modal = document.getElementById('resultModal');
+    const body = document.getElementById('modalBody');
 
-    // Simulate test correction: adds a small boost to current grade (approx 2% increase)
+    if (isNaN(current) || isNaN(target) || isNaN(weight)) {
+        alert("Please enter all your grades first!");
+        return;
+    }
+
+    // Optional Test Correction boost
     if (correction) {
         current += 2; 
     }
 
-    // Formula: (Target - (Current * (1 - Weight))) / Weight
-    return (target - (current * (1 - weight))) / weight;
-}
+    const needed = (target - (current * (1 - weight))) / weight;
+    
+    let title = "You need a...";
+    let sub = `to end with a ${target}%`;
+    let emoji = "✍️";
 
-function liveCalculate() {
-    const needed = getNeeded();
-    const display = document.getElementById('liveResult');
-
-    if (needed === null) {
-        display.innerText = "";
-        return;
-    }
-
-    display.innerText = `You need a ${needed.toFixed(1)}% on the final.`;
-}
-
-function showPopup() {
-    const needed = getNeeded();
-    const modal = document.getElementById('resultModal');
-    const body = document.getElementById('modalBody');
-
-    if (needed === null) {
-        alert("Please enter your grades first!");
-        return;
-    }
-
-    let extraMessage = "";
     if (needed > 100) {
-        extraMessage = "<p>Ouch! You'll need some extra credit to pull this off.</p>";
-    } else if (needed < 60) {
-        extraMessage = "<p>You're in good shape! Take a nap.</p>";
-    } else {
-        extraMessage = "<p>Study hard, you've got this!</p>";
+        emoji = "🚀";
+        title = "Reach for the stars!";
+    } else if (needed < 70) {
+        emoji = "😎";
+        title = "You're chilling!";
+    } else if (needed <= 0) {
+        emoji = "🥳";
+        title = "You've already won!";
     }
 
     body.innerHTML = `
-        <h2 style="color: #007bff">${needed.toFixed(1)}%</h2>
-        <p>That is what you need on your final exam to end with a <strong>${document.getElementById('targetGrade').value}%</strong>.</p>
-        ${extraMessage}
+        <div style="font-size: 3rem;">${emoji}</div>
+        <h3 style="margin-bottom: 0; color: #888; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">${title}</h3>
+        <span class="result-number">${needed <= 0 ? "0" : needed.toFixed(1)}%</span>
+        <p style="color: #666; margin-top: 0;">${sub}</p>
     `;
 
     modal.style.display = "block";
@@ -59,7 +48,6 @@ function closeModal() {
     document.getElementById('resultModal').style.display = "none";
 }
 
-// Close on outside click
 window.onclick = function(event) {
     if (event.target == document.getElementById('resultModal')) closeModal();
 }
